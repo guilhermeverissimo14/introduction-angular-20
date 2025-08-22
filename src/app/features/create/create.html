@@ -1,0 +1,12 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" placeholder="Nome do usuário" />
+
+  <!-- Recupera o valor do form em tempo real -->
+  <!-- {{form.value.name}} -->
+
+  @if(form.controls.name.errors?.['required']){
+    <span class="error-message">O nome é obrigatório</span>
+ }
+
+  <button [disabled]="form.invalid">Criar usuário</button>
+</form>

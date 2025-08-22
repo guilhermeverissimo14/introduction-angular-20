@@ -8,6 +8,11 @@ export const routes: Routes = [
         loadChildren: () => import('./features/list/routes').then(m => m.routes) // carregamento lazy loading de módulos ou seja agrupa rotas
     }, 
 
+    {
+        path: 'create',
+        loadChildren: () => import('./features/create/routes').then(m => m.routes)
+    },
+
     //se ele não encontrar a rota list, ele vai redirecionar para a rota list
     {
         path: '',
