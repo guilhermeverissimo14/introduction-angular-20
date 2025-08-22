@@ -1,5 +1,6 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../../../shared/services/user.service';
 
 @Component({
   selector: 'app-users-list',
@@ -8,6 +9,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './users-list.scss'
 })
 export class UsersList {
+
+  userService = inject(UserService);
 
   public users = input.required<string[]>();
   public removeUser =  output<string>({alias: 'remove'});  // alias é usado para renomear o evento emitido
