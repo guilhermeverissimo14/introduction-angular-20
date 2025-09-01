@@ -3,7 +3,7 @@
   @for(user of users(); track user){
 
     <li>
-        {{ user }} <button (click)="remove(user)">Remove</button>
+        {{ user.name }} <button (click)="remove(user)">Remove</button>
     </li>
   }@empty {
     <li>No users found</li>

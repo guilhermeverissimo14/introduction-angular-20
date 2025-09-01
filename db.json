@@ -1,9 +1,16 @@
 {
-    "users": [
-        "Rodrigo",
-        "João",
-        "Maria",
-        "Ana",
-        "Pedro"
-    ]
+  "users": [
+    {
+      "name": "teste",
+      "id": "1"
+    },
+    {
+      "id": "b3fd",
+      "name": "teste"
+    },
+    {
+      "id": "6674",
+      "name": "Gabriel"
+    }
+  ]
 }
