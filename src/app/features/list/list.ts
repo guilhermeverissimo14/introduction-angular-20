@@ -1,9 +1,11 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, DestroyRef, effect, inject, signal } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 import { UserService } from "../../shared/services/user.service";
 import { UsersList } from "./components/users-list/users-list";
 import { SearchInput } from "./components/search-input/search-input";
 import { User } from "../../shared/interfaces/user";
+import { take } from "rxjs";
 
 @Component({
   selector: 'app-list',
@@ -24,6 +26,7 @@ import { User } from "../../shared/interfaces/user";
 })
 export class List {
   userService = inject(UserService);
+  destroyRef = inject(DestroyRef);
 
   isLoading = signal(true);
 
@@ -62,7 +65,12 @@ export class List {
   private getUsers() {
 
     // Se tem alguma coisa no search que vem do valor digitado o computed reagi e filtra.
-    this.userService.getAll(this.search()).subscribe(users => {
+    this.userService.getAll(this.search())
+    .pipe(
+      takeUntilDestroyed(this.destroyRef),
+      take(1)
+    )
+    .subscribe(users => {
       this.users.set(users);
       this.isLoading.set(false);
     });
