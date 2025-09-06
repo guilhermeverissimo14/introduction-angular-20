@@ -1,13 +1,15 @@
 import { Component, computed, inject, input, output, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../../shared/services/user.service';
 import { User } from '../../../../shared/interfaces/user';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { ErrorBtn } from './directives/error-btn/error-btn';
 
 @Component({
   selector: 'app-users-list',
-  imports: [FormsModule],
+  imports: [MatCardModule, MatButtonModule, ErrorBtn],
   templateUrl: './users-list.html',
-  styleUrl: './users-list.scss'
+  styleUrl: './users-list.scss',
 })
 export class UsersList {
 

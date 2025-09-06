@@ -1,12 +1,25 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <input type="text" formControlName="name" placeholder="Nome do usuário" />
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+
+  <mat-form-field>
+    <mat-label>Nome do usuário</mat-label>
+    <input
+      matInput
+      required
+      type="text" 
+      formControlName="name" 
+      placeholder="Ex: João Silva" 
+    />
+
+    @if(form.controls.name.errors?.['required']){
+      <mat-error>Campo é obrigatório</mat-error>
+    }
+  </mat-form-field>
 
   <!-- Recupera o valor do form em tempo real -->
   <!-- {{form.value.name}} -->
 
-  @if(form.controls.name.errors?.['required']){
-    <span class="error-message">O nome é obrigatório</span>
- }
-
-  <button [disabled]="form.invalid">Criar usuário</button>
+  <div class="actions-container">
+    <button type="button" matButton="elevated" routerLink="/">Cancelar</button>
+    <button type="submit" matButton="filled" [disabled]="form.invalid">Criar usuário</button>
+  </div>
 </form>

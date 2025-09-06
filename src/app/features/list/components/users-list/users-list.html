@@ -1,11 +1,13 @@
 
-<ul>
   @for(user of users(); track user){
 
-    <li>
-        {{ user.name }} <button (click)="remove(user)">Remove</button>
-    </li>
+    <mat-card class="card">
+      <mat-card-content class="card-content">
+        <span> {{ user.name }} </span>
+        <button class="action-button" appErrorBtn matButton="filled" (click)="remove(user)">Remove</button>
+      </mat-card-content>
+    </mat-card>
+
   }@empty {
     <li>No users found</li>
   }
-</ul>
