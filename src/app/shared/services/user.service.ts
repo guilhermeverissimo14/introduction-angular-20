@@ -11,7 +11,7 @@ export class UserService {
 
     httpClient = inject(HttpClient);
 
-    getById(id: number) {
+    getById(id: number | string) {
         return this.httpClient.get<User>(`http://localhost:3000/users/${id}`);
     }
 
