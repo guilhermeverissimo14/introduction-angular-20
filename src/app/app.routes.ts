@@ -13,6 +13,11 @@ export const routes: Routes = [
         loadChildren: () => import('./features/create/routes').then(m => m.routes)
     },
 
+    {
+        path: 'edit/:id',
+        loadChildren: () => import('./features/edit/routes').then(m => m.routes)
+    },
+
     //se ele não encontrar a rota list, ele vai redirecionar para a rota list
     {
         path: '',

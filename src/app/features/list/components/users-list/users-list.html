@@ -3,8 +3,17 @@
 
     <mat-card class="card">
       <mat-card-content class="card-content">
-        <span> {{ user.name }} </span>
-        <button class="action-button" appErrorBtn matButton="filled" (click)="remove(user)">Remove</button>
+         <!-- pipe sem paramentros -->
+        <!-- <span> {{ user.name | titlecase  | truncate}} </span> -->
+
+          <!-- pipe com paramentros -->
+        <span> {{ user.name | titlecase  | truncate: 9}} </span>
+
+        <div class="actions">
+          <button  appErrorBtn matButton="filled" (click)="remove(user)">Remove</button>
+          <button matButton="filled" (click)="edit(user)">Editar</button>
+        </div>
+
       </mat-card-content>
     </mat-card>
 

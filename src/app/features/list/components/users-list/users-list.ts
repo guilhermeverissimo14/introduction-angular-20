@@ -4,10 +4,12 @@ import { User } from '../../../../shared/interfaces/user';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorBtn } from './directives/error-btn/error-btn';
+import { TitleCasePipe } from '@angular/common';
+import { TruncatePipe } from './pipes/truncate/truncate.pipe';
 
 @Component({
   selector: 'app-users-list',
-  imports: [MatCardModule, MatButtonModule, ErrorBtn],
+  imports: [MatCardModule, MatButtonModule, ErrorBtn, TitleCasePipe, TruncatePipe],
   templateUrl: './users-list.html',
   styleUrl: './users-list.scss',
 })
@@ -17,9 +19,13 @@ export class UsersList {
 
   public users = input.required<User[]>();
   public removeUser =  output<User>({alias: 'remove'});  // alias é usado para renomear o evento emitido
+  public editUser = output<User>({alias: 'edit'});
 
   remove(user: User) {
    this.removeUser.emit(user);
   }
-  
+
+  edit(user: User) {
+    this.editUser.emit(user);
+  }
 }

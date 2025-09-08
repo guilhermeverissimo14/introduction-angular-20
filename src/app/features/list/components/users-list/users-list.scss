@@ -6,8 +6,11 @@
         flex-direction: row;
         align-items: center;
 
-        .action-button {
+        .actions {
+            display: flex;
+            justify-content: flex-end;
             margin-left: auto;
+            gap: 8px;
         }
     }
 }

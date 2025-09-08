@@ -6,7 +6,7 @@ import { UsersList } from "./components/users-list/users-list";
 import { SearchInput } from "./components/search-input/search-input";
 import { User } from "../../shared/interfaces/user";
 import { take } from "rxjs";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { MatButtonModule } from "@angular/material/button";
 
 @Component({
@@ -16,8 +16,10 @@ import { MatButtonModule } from "@angular/material/button";
   imports: [UsersList, SearchInput, RouterLink, MatButtonModule],  
 })
 export class List {
+
   userService = inject(UserService);
   destroyRef = inject(DestroyRef);
+  router = inject(Router);
 
   isLoading = signal(true);
 
@@ -50,7 +52,10 @@ export class List {
     this.userService.delete(id).subscribe(() => {
       this.users.update(users => users.filter(u => u.id !== id));
     });
+  }
 
+  edit(user: User) {
+    this.router.navigate(['/edit', user.id]);
   }
 
   private getUsers() {

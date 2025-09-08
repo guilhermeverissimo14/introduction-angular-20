@@ -11,6 +11,10 @@ export class UserService {
 
     httpClient = inject(HttpClient);
 
+    getById(id: number) {
+        return this.httpClient.get<User>(`http://localhost:3000/users/${id}`);
+    }
+
     getAll(search?: string) {
 
         let httpParamns = new HttpParams();
@@ -31,6 +35,10 @@ export class UserService {
             .pipe(
                 delay(1000)
             )
+    }
+
+    put(id: number, payload: UserPayload) {
+        return this.httpClient.put<User>(`http://localhost:3000/users/${id}`, payload);
     }
 
     delete(id: number) {
